@@ -43,7 +43,7 @@ exports.parse = function(mutation) {
     if (hasBadge) {
       var badgeSpan = newNode.querySelector('.badges');
       var badge = badges.getBadgeElement(userName);
-      if (badgeSpan.length) badgeSpan.appendChild(badge);
+      if (badgeSpan) badgeSpan.appendChild(badge);
     }
   }
 
