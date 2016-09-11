@@ -1,0 +1,59 @@
+- var languages = locals
+
+//- =Interface=
+//- * Enable (checkbox)
+//- * Language (select)
+//- * Volume (slider)
+//- * Skip message link (button)
+//- * Clear queue link (button)
+//- * Extra settings carousel (details)
+//-  * Spam filter (checkbox)
+//-  * Ignore my own messages (checkbox)
+//-  * Ignore messages for others (checkbox)
+//-  * Ignore links (checkbox)
+//-  * Ignore commands (checkbox)
+//-  * Read usernames (checkbox)
+//-  * Normalize usernames (checkbox)
+//-  * Use custom 'says' word (checkbox)
+//-  * Custom says word (input text, textfield?)
+
+.list-header Twitch Chat Reader
+.chat-menu-content
+  p
+    input.tcrEnabled(type='checkbox')
+    |  Enabled
+  p
+    | Language
+    select.tcrLanguage
+      each key,i in languages
+        option(value=i) #{key['name']}
+  p
+    .tcrVolumeText Volume 00%
+    input.tcrVolume(type='range')
+  p: a.g18_gear-00000080.tcrActionSkipMessage(href='#') Skip message
+  p: a.g18_trash-00000080.tcrActionClearQueue(href='#') Clear queue
+
+  //- TODO: This should be a collapse
+  //- TODO: Add other options
+  p Extra settings
+  p
+    input.tcrIgnoreSelf(type='checkbox')
+    | Ignore my own messages
+  p
+    input.tcrIgnoreMsgsForOthers(type='checkbox')
+    | Ignore messages for others
+  p
+    input.tcrIgnoreLinks(type='checkbox')
+    | Ignore links
+  p
+    input.tcrIgnoreCommands(type='checkbox')
+    | Ignore commands
+  p
+    input.tcrReadUsernames(type='checkbox')
+    | Read usernames
+  p
+    input.tcrNormalizeUsernames(type='checkbox')
+    | Normalize usernames (Experimental)
+  p
+    input.tcrSpamFilter(type='checkbox')
+    | Spam filter
