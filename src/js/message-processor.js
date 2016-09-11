@@ -68,7 +68,7 @@ function processName(nameData, lastSender) {
 
   nameString += userName.toLowerCase();
   nameString += ' ' + saysWord;
-  nameString += ': '; // This adds a little pause that helps distinguish name from message
+  nameString += ':'; // This adds a little pause that helps distinguish name from message
 
   return nameString;
 }
@@ -103,18 +103,16 @@ function processMessage(messageData) {
     var type = messageEntry.type;
     var data = messageEntry.data;
 
-    messageString += ' ';
-
     if (type === 'text') {
       // Remove links here?
       // Remove spaces here?
       // Trim the message (unnecessary space)
 
-      messageString += data;
+      messageString += ' ' + data;
     }
 
     if (type === 'emote' && !emotesIncluded.includes(data)) {
-      messageString += data;
+      messageString += ' ' + data;
       emotesIncluded.push(data);
     }
   }
