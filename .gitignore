@@ -4,3 +4,8 @@ node_modules
 # Custom folders
 dist
 extras
+
+# Dev certificate files
+dev/*.crt
+dev/*.key
+dev/*.pem
