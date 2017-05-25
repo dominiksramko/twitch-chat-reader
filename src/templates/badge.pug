@@ -1,0 +1,7 @@
+- var title = locals.title
+- var imageLink = locals.imageLink
+
+span.balloon-wrapper.float-left
+  a(rel='noopener noreferrer' target='_blank')
+    img.badge(src=imageLink alt=title)
+  .balloon.balloon--tooltip.balloon--up #{title}
