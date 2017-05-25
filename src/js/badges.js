@@ -16,7 +16,7 @@ module.exports = {
   },
   getBadgeElement: function(user) {
     badgeElement.setAttribute('original-title', badgePeople[user].title);
-    var badgeUrl = "url('" + cdnUrl + badgePeople[user].image + "')";
+    var badgeUrl = "url('" + badgePeople[user].image + "')";
     badgeElement.style.backgroundImage = badgeUrl;
     return badgeElement.cloneNode();
   }
