@@ -4,7 +4,7 @@ module.exports = {
     return false;
   },
   isTag: function(node, tagName) {
-    return (node && node.nodeName && node.nodeName.toLowerCase().includes(tagName));
+    return (node && node.nodeName && node.nodeName.toLowerCase() == tagName);
   },
   hasChildClass: function(node, className) {
     return node.querySelector(className) != null;
