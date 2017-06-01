@@ -41,6 +41,7 @@ function loadChatSettings() {
   settingsManager.load();
 
   registerSlider('.tcrVolume', '.tcrVolumeText', 'Volume');
+  registerSlider('.tcrRate', '.tcrRateText', 'Rate');
 
   for (var key in registeredSliders) {
     var slider = registeredSliders[key];

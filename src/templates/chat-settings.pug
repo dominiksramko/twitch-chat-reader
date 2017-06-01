@@ -30,6 +30,9 @@
   p
     .tcrVolumeText Volume 00%
     input.tcrVolume(type='range')
+  p
+    .tcrRateText Rate ??%
+    input.tcrRate(type='range' min='10' max='1000')
   p: a.tcrActionSkipMessage(href='#') Skip message
   p: a.tcrActionClearQueue(href='#') Clear queue
 

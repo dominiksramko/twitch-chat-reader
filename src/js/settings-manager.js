@@ -5,6 +5,7 @@ var defaultValues = {
   'Enabled': true,
   'Language': 'enUS',
   'Volume': '50',
+  'Rate': '100',
   'IgnoreSelf': true,
   'IgnoreMsgsForOthers': true,
   'IgnoreLinks': true,
