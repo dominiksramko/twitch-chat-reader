@@ -3,8 +3,10 @@ var domMessageParser = require('./dom-message-parser'),
     languages = require('./languages'),
     ttsPlayer = require('./tts-player');
 
-var chatLines, tcrChatSettings, tcrVolume, tcrVolumeText,
-      tcrLanguage, tcrActionSkipMessage, tcrActionClearQueue = '';
+var chatLines, tcrChatSettings,
+  tcrLanguage, tcrActionSkipMessage, tcrActionClearQueue = '';
+
+var registeredSliders = {};
 
 var observer = new MutationObserver(function(mutations) {
   for (var i = 0; i < mutations.length; i++) {
@@ -35,22 +37,15 @@ function injectChatSettings() {
   if (chatSettings) chatSettings.appendChild(tcrChatSettings);
 }
 
-// TODO: Add types/events into settings-manager for dynamicity
 function loadChatSettings() {
   settingsManager.load();
 
-  tcrVolume = tcrChatSettings.querySelector('.tcrVolume');
-  tcrVolume.value = settingsManager.get('Volume');
-  tcrVolumeText = tcrChatSettings.querySelector('.tcrVolumeText');
-  tcrVolume.onchange = function () {
-    updateVolume(true);
-  };
+  registerSlider('.tcrVolume', '.tcrVolumeText', 'Volume');
 
-  tcrVolume.oninput = function() {
-    updateVolume(false);
-  };
-
-  updateVolume(false);
+  for (var key in registeredSliders) {
+    var slider = registeredSliders[key];
+    slider.updateSlider(false);
+  }
 
   tcrLanguage = tcrChatSettings.querySelector('.tcrLanguage');
   tcrLanguage.value = settingsManager.get('Language');
@@ -76,6 +71,9 @@ function loadChatSettings() {
       var checkBox = checkBoxes[index];
 
       var element = tcrChatSettings.querySelector('.tcr'+checkBox);
+      if (!element)
+        return;
+
       var setting = settingsManager.getBool(checkBox);
 
       // One way to convert string to boolean
@@ -90,6 +88,48 @@ function loadChatSettings() {
       }
     })(i);
   }
+}
+
+function registerSlider(sliderInputSelector, sliderTextSelector, settingName) {
+  if (settingName in registeredSliders) {
+    debug.log(settingName + ' slider is registered already!');
+    return false;
+  }
+
+  var slider = {};
+
+  slider.settingName = settingName;
+  slider.sliderInput = tcrChatSettings.querySelector(sliderInputSelector);
+  if (!slider.sliderInput) {
+    debug.log(sliderInputSelector + ' selector not found!');
+    return false;
+  }
+  slider.sliderInput.value = settingsManager.get(settingName);
+
+  slider.sliderText = tcrChatSettings.querySelector(sliderTextSelector);
+  if (!slider.sliderText) {
+    debug.log(sliderInputSelector + ' selector not found!');
+    return false;
+  }
+
+  slider.updateSlider = function(saveSetting) {
+    var val = slider.sliderInput.value;
+    slider.sliderText.textContent = slider.settingName + ' ' + val + '%';
+    if (saveSetting)
+      settingsManager.set(slider.settingName, val);
+  };
+
+  slider.sliderInput.onchange = function () {
+    slider.updateSlider(true);
+  };
+
+  slider.sliderInput.oninput = function() {
+    slider.updateSlider(false);
+  };
+
+  registeredSliders[settingName] = slider;
+
+  return true;
 }
 
 function updateVolume(saveSetting) {
