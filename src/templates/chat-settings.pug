@@ -28,8 +28,8 @@
       each key,i in languages
         option(value=i) #{key['name']}
   p
-    .tcrVolumeText Volume 00%
-    input.tcrVolume(type='range')
+    .tcrVolumeText Volume ??%
+    input.tcrVolume(type='range' min='0' max='100')
   p
     .tcrRateText Rate ??%
     input.tcrRate(type='range' min='10' max='1000')
