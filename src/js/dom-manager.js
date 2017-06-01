@@ -42,6 +42,7 @@ function loadChatSettings() {
 
   registerSlider('.tcrVolume', '.tcrVolumeText', 'Volume');
   registerSlider('.tcrRate', '.tcrRateText', 'Rate');
+  registerSlider('.tcrPitch', '.tcrPitchText', 'Pitch');
 
   for (var key in registeredSliders) {
     var slider = registeredSliders[key];
@@ -94,7 +95,7 @@ function loadChatSettings() {
 function registerSlider(sliderInputSelector, sliderTextSelector, settingName) {
   if (settingName in registeredSliders) {
     debug.log(settingName + ' slider is registered already!');
-    return false;
+    return null;
   }
 
   var slider = {};
@@ -103,14 +104,14 @@ function registerSlider(sliderInputSelector, sliderTextSelector, settingName) {
   slider.sliderInput = tcrChatSettings.querySelector(sliderInputSelector);
   if (!slider.sliderInput) {
     debug.log(sliderInputSelector + ' selector not found!');
-    return false;
+    return null;
   }
   slider.sliderInput.value = settingsManager.get(settingName);
 
   slider.sliderText = tcrChatSettings.querySelector(sliderTextSelector);
   if (!slider.sliderText) {
     debug.log(sliderInputSelector + ' selector not found!');
-    return false;
+    return null;
   }
 
   slider.updateSlider = function(saveSetting) {
@@ -130,7 +131,7 @@ function registerSlider(sliderInputSelector, sliderTextSelector, settingName) {
 
   registeredSliders[settingName] = slider;
 
-  return true;
+  return slider;
 }
 
 function updateVolume(saveSetting) {
