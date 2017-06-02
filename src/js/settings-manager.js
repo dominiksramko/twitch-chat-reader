@@ -1,11 +1,11 @@
 var debug = require('./helpers/debug');
 
-// TODO: Use types instead? (checkbox, etc)
 var defaultValues = {
   'Enabled': true,
-  'Language': 'enUS',
+  'Language': 'US English',
   'Volume': '50',
   'Rate': '100',
+  'Pitch': '100',
   'IgnoreSelf': true,
   'IgnoreMsgsForOthers': true,
   'IgnoreLinks': true,
@@ -73,6 +73,12 @@ exports.set = function(item, value) {
   settings[item] = value;
 
   setStorage(storage);
+}
+
+exports.default = function(item) {
+  var defaultValue = defaultValues[item];
+  exports.set(item, defaultValue);
+  return defaultValue;
 }
 
 exports.getAllSettings = function() {

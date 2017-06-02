@@ -4,19 +4,33 @@
 var debug = require('./helpers/debug');
 
 var messageManager = require('./message-manager'),
-    domManager = require('./dom-manager');
+    domManager = require('./dom-manager'),
+    ttsService = require('./tts-service');
 
 function load() {
-  domManager.start();
-  messageManager.registerEvents();
+  ttsService.start();
 
-  window.TCR['LOADED'] = true;
-  debug.log('Loaded!');
+  ttsService.ee.on('service-ready', function() {
+    if (!window.TCR.LOADED) {
+      domManager.start();
+      messageManager.registerEvents();
+
+      window.TCR['LOADED'] = true;
+      debug.log('Loaded!');
+    }
+  });
 }
 
-if (!window.TCR) {
+if (!window.TCR || !window.TCR.LOADED) {
   window.TCR = {};
   window.TCR['LOADED'] = false;
   window.TCR['DEBUG'] = true;
-  load();
+
+  if(document.readyState === "complete") {
+    load();
+  } else {
+    window.addEventListener("onload", function() {
+      load();
+    }, false);
+  }
 }

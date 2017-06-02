@@ -1,7 +1,8 @@
 var domMessageParser = require('./dom-message-parser'),
     settingsManager = require('./settings-manager'),
     languages = require('./languages'),
-    ttsPlayer = require('./tts-player');
+    ttsPlayer = require('./tts-player'),
+    debug = require('./helpers/debug');
 
 var chatLines, tcrChatSettings,
   tcrLanguage, tcrActionSkipMessage, tcrActionClearQueue = '';
@@ -50,7 +51,11 @@ function loadChatSettings() {
   }
 
   tcrLanguage = tcrChatSettings.querySelector('.tcrLanguage');
-  tcrLanguage.value = settingsManager.get('Language');
+  var language = settingsManager.get('Language');
+  if (!languages.getVoice(language))
+    language = settingsManager.default('Language');
+
+  tcrLanguage.value = language;
   tcrLanguage.onchange = function() {
     settingsManager.set('Language', tcrLanguage.value);
   };
@@ -132,12 +137,6 @@ function registerSlider(sliderInputSelector, sliderTextSelector, settingName) {
   registeredSliders[settingName] = slider;
 
   return slider;
-}
-
-function updateVolume(saveSetting) {
-  var volume = tcrVolume.value;
-  tcrVolumeText.textContent = 'Volume ' + volume + '%';
-  if (saveSetting) settingsManager.set('Volume', volume);
 }
 
 function startObserving() {

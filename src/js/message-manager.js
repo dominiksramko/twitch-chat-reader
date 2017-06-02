@@ -12,13 +12,12 @@ var messageHistory = [];
 var historyLength = 5;
 
 function getNext() {
-  var isNotEnabled = !settingsManager.getBool('Enabled');
+  var isEnabled = settingsManager.getBool('Enabled');
 
   // Clearing queue when the Enabled is true (Should be event-based)
-  if (isNotEnabled) return null;
+  if (!isEnabled) return null;
 
-  // Just for testing so far
-  var isMuted = ttsPlayer.isMuted();
+  // var isMuted = ttsPlayer.isMuted();
 
   if (messageQueue.length === 0) return null;
 

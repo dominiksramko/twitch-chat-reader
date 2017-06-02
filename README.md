@@ -14,7 +14,7 @@ Reads Twitch chat using text-to-speech [service](https://responsivevoice.org).
 ## Development
 1. Run `npm run start` to run the https server.
 2. Run `gulp watch` to watch changes in the `src` folder.
-3. Add following code into your bookmarks: `javascript:void((function(){var d=document.createElement('script');d.setAttribute('type','text/javascript');d.setAttribute('src','https://code.responsivevoice.org/responsivevoice.js');document.body.appendChild(d);var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://localhost:3000/tcr.js');document.body.appendChild(e)})());`
+3. Add following code into your bookmarks: `javascript:void((function(){var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://localhost:3000/tcr.js');document.body.appendChild(e)})());`
 4. Open a Twitch stream.
 5. Click on the `TCR` bookmark.
 6. Open the gear icon to adjust settings.

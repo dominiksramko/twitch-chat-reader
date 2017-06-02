@@ -115,6 +115,10 @@ function processMessage(messageData) {
       messageString += ' ' + data;
       emotesIncluded.push(data);
     }
+
+     if (type === 'link' && !settingsManager.getBool('IgnoreLinks')) {
+      messageString += ' ' + data;
+    }
   }
 
   return messageString;
