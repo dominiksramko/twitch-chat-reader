@@ -31,8 +31,6 @@ function getNext() {
   //if (spamFilterEnabled && messageHistory.includes(rawMessage)) return null;
   //messageHistory.push(rawMessage);
 
-  lastSender.time = Date.now();
-
   var processedMessage = messageProcessor.process(nextMessage, lastSender);
 
   if (processedMessage === null) {
@@ -40,6 +38,7 @@ function getNext() {
     return null;
   }
 
+  lastSender.time = Date.now();
   lastSender.name = nextMessage['name']['profileName'];
 
   return processedMessage;
