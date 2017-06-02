@@ -1,5 +1,5 @@
 # Twitch Chat Reader
-Reads Twitch chat using text-to-speech [service](https://responsivevoice.org).
+Reads Twitch chat using text-to-speech
 
 ## How to build
 
