@@ -66,6 +66,10 @@ exports.speak = function(message) {
   }
 }
 
+exports.cancel = function() {
+  synth.cancel();
+}
+
 function audioFinished() {
   ee.emit('audio-finished');
 }

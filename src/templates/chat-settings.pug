@@ -24,18 +24,18 @@
     |  Enabled
   p
     | Language
-    select.tcrLanguage
+    select.tcrLanguage(style='max-width: 160px; height: 30px;')
       each key,i in languages
-        option(value=i) #{key['name']}
+        option(value=key['name']) #{key['name']}
   p
     .tcrVolumeText Volume ??%
     input.tcrVolume(type='range' min='0' max='100')
   p
     .tcrRateText Rate ??%
-    input.tcrRate(type='range' min='10' max='1000')
+    input.tcrRate(type='range' min='10' max='200')
   p
     .tcrPitchText Pitch ??%
-    input.tcrPitch(type='range' min='0' max='200')
+    input.tcrPitch(type='range' min='10' max='200')
   p: a.tcrActionSkipMessage(href='#') Skip message
   p: a.tcrActionClearQueue(href='#') Clear queue
   p
@@ -54,8 +54,8 @@
     input.tcrReadUsernames(type='checkbox')
     | Read usernames
   p
-    input.tcrNormalizeUsernames(type='checkbox')
-    | Normalize usernames (Experimental)
+    input.tcrNormalizeUsernames(type='checkbox' title='xXm4dn355Xx -> madness')
+    | Normalize usernames
   //-p
   //-  input.tcrSpamFilter(type='checkbox')
   //-  | Spam filter

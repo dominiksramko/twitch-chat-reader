@@ -17,9 +17,8 @@ ttsService.ee.on('audio-finished', function() {
 exports.stop = function(reason) {
   if (isPlaying) {
     reason = reason || '';
-    responsiveVoice.cancel();
+    ttsService.cancel();
     isPlaying = false;
-    exports.playAudio();
     ee.emit('audio-stopped', reason);
   }
 }
