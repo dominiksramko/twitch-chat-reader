@@ -16,14 +16,14 @@ var leetDictionary = {
 '9': 'p'
 };
 
-// Example: 69l0l69_xXxD0M4D1CxXx_420
+// Example: 69l0l69_xXxM4DxXx_420
 //
-// 1. Splits the names by '_'         -> [69l0l69, 'xXxD0M4D1CxXx', 420]
-// 2. Remove leading numbers          -> [l0l69, 'xXxD0M4D1CxXx', ]
-// 3. Remove trailing numbers         -> [l0l, 'xXxD0M4D1CxXx', ]
-// 4. Remove Vin Diesel               -> [l0l, 'D0M4D1C', ]
-// 5. Replace leet numbers by letters -> [lol, 'DoMaDiC', ]
-// 6. Join the array using a space    -> 'lol DoMaDiC'
+// 1. Splits the names by '_'         -> [69l0l69, 'xXxM4DxXx', 420]
+// 2. Remove leading numbers          -> [l0l69, 'xXxM4DxXx', ]
+// 3. Remove trailing numbers         -> [l0l, 'xXxM4DxXx', ]
+// 4. Remove Vin Diesel               -> [l0l, 'M4D', ]
+// 5. Replace leet numbers by letters -> [lol, 'MaD', ]
+// 6. Join the array using a space    -> 'lol MaD'
 //
 // Things to do:
 // Remove short words?
